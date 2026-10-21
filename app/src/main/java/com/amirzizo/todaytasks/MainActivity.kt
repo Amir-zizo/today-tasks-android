@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -48,7 +47,7 @@ import com.amirzizo.todaytasks.ui.theme.TodayTasksTheme
 import org.json.JSONArray
 import org.json.JSONObject
 
-class Task(
+data class Task(
     val id: Long,
     val title: String,
     val completed: Boolean
@@ -182,7 +181,7 @@ fun TodayTasksScreen() {
                         modifier = Modifier.fillMaxSize(),
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
-                        items(tasks) { task ->
+                        items(tasks, key = { it.id }) { task ->
                             Card(
                                 modifier = Modifier.fillMaxWidth(),
                                 shape = RoundedCornerShape(14.dp)
